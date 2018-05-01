@@ -10,6 +10,18 @@ import java.util.List;
 public class TestApplication {
 
 	public static void main(String[] args) {
+		//lambda表达式练习
+		apple();
+		runner();
+
+//		SpringApplication.run(TestApplication.class, args);
+
+	}
+
+	/**
+	 * lambda表达式练习-apple
+	 */
+	private static void apple(){
 		List<Apple> appleList = Arrays.asList(new Apple("1","green",5),
 				new Apple("2","yellow",6),
 				new Apple("3","brown",10),
@@ -42,9 +54,23 @@ public class TestApplication {
 		System.out.println(filterGreenApples4);
 		System.out.println(filterGreenApples5);
 		System.out.println(filterGreenApples6);
-
-
-//		SpringApplication.run(TestApplication.class, args);
-
 	}
+
+	/**
+	 * lambda表达式练习-apple
+	 */
+	private static void runner(){
+		Runnable r1 = ()-> System.out.println("Hello World 1");
+		Runnable r2 = new Runnable() {
+			@Override
+			public void run() {
+				System.out.println("Hello World 2");
+			}
+		};
+
+		RunnerUtil.process(r1);
+		RunnerUtil.process(r2);
+		RunnerUtil.process(()->System.out.println("Hello World 3"));
+	}
+
 }
