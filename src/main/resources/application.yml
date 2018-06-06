@@ -1,0 +1,18 @@
+jetcache:
+  statIntervalMinutes: 15
+  areaInCacheName: false
+  hiddenPackages: com.alibaba
+  local:
+    default:
+      type: caffeine
+      limit: 100
+      keyConvertor: fastjson
+      expireAfterWriteInMillis: 100000
+    otherArea:
+      type: linkedhashmap
+      limit: 100
+      keyConvertor: none
+      expireAfterWriteInMillis: 100000
+  remote:
+    default:
+      type: false
