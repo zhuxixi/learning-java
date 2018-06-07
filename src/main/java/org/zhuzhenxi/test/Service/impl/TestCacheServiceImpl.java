@@ -1,5 +1,6 @@
 package org.zhuzhenxi.test.Service.impl;
 
+import com.alicp.jetcache.anno.CacheRefresh;
 import com.alicp.jetcache.anno.CacheType;
 import com.alicp.jetcache.anno.CacheUpdate;
 import com.alicp.jetcache.anno.Cached;
@@ -21,9 +22,11 @@ public class TestCacheServiceImpl implements TestCacheService {
     private static List<String> valueList = new ArrayList<>();
 
     @Cached(name="testCache-", key="#param",expire = 1,timeUnit = TimeUnit.MINUTES,cacheType = CacheType.LOCAL,area = "default")
+    @CacheRefresh(refresh = 4,timeUnit = TimeUnit.SECONDS)
     @Override
     public String queryValue(String param) {
         System.out.println("进入了queryValue方法体");
+        System.out.println("当前数据是"+value);
         return value;
     }
     @CacheUpdate(name="testCache-", key="#param",value = "#result",area = "default")
