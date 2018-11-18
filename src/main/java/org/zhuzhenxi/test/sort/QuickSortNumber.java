@@ -1,21 +1,23 @@
 package org.zhuzhenxi.test.sort;
 
+import org.zhuzhenxi.test.random.RandomUtil;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-public class QuickSort {
+public class QuickSortNumber {
     public static void main(String[] args) {
         List<Integer> testArray = new ArrayList<>();
 
         for (int i = 0; i < 2000000; i++) {
-            testArray.add(randomInt());
+            testArray.add(RandomUtil.generateRandomNumber());
         }
+//        System.out.println("排序前"+testArray);
         long start = System.currentTimeMillis();
         testArray = quickSort(testArray);
         long end = System.currentTimeMillis();
         System.out.println("快速排序耗时："+(end-start));//200条3毫秒，2万=50毫秒，20万500毫秒，200万=3秒
-//        System.out.println(testArray);
+//        System.out.println("排序后"+testArray);
 
 
     }
@@ -44,17 +46,11 @@ public class QuickSort {
 
         }
         List<Integer> left1 = quickSort(left);
-        //pivot 不需要排序
         List<Integer> right1 = quickSort(right);
 
         left1.addAll(pivot);
         left1.addAll(right1);
         return left1;
     }
-    private static int randomInt(){
-        Random random = new Random();
-        int x = random.nextInt(899999);
-        x = x+100000;
-        return x;
-    }
+
 }
