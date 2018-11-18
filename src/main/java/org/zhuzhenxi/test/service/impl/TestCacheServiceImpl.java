@@ -1,12 +1,11 @@
-package org.zhuzhenxi.test.Service.impl;
+package org.zhuzhenxi.test.service.impl;
 
 import com.alicp.jetcache.anno.CacheRefresh;
 import com.alicp.jetcache.anno.CacheType;
 import com.alicp.jetcache.anno.CacheUpdate;
 import com.alicp.jetcache.anno.Cached;
-import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Service;
-import org.zhuzhenxi.test.Service.TestCacheService;
+import org.zhuzhenxi.test.service.TestCacheService;
 
 import java.util.ArrayList;
 import java.util.List;

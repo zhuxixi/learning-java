@@ -1,12 +1,6 @@
-package org.zhuzhenxi.test.Service;
-
-import com.alicp.jetcache.anno.CacheRefresh;
-import com.alicp.jetcache.anno.CacheType;
-import com.alicp.jetcache.anno.CacheUpdate;
-import com.alicp.jetcache.anno.Cached;
+package org.zhuzhenxi.test.service;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * JetCache学习笔记
