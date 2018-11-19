@@ -7,30 +7,34 @@ import java.util.List;
 
 public class QuickSortNumber {
     public static void main(String[] args) {
-        List<Integer> testArray = new ArrayList<>();
+        List<Integer> testArray = new ArrayList<>(1000000000);
 
-        for (int i = 0; i < 2000000; i++) {
+        for (int i = 0; i < 1000000000; i++) {
             testArray.add(RandomUtil.generateRandomNumber());
         }
-//        System.out.println("排序前"+testArray);
+        System.out.println("排序前"+testArray);
         long start = System.currentTimeMillis();
         testArray = quickSort(testArray);
         long end = System.currentTimeMillis();
         System.out.println("快速排序耗时："+(end-start));//200条3毫秒，2万=50毫秒，20万500毫秒，200万=3秒
-//        System.out.println("排序后"+testArray);
+        System.out.println("排序后"+testArray);
+        testArray = testArray.subList(0,99);
+        System.out.println("排序后"+testArray);
+
 
 
     }
 
 
     private static List<Integer> quickSort(List<Integer> array){
-        if (array.size()<2){
+        if (array.size()<101){
+//            System.out.println("当前区间"+array);
             return array;
         }
         int pivot0 = array.get(0);
-        List<Integer> left = new ArrayList<>();
-        List<Integer> pivot= new ArrayList<>();
-        List<Integer> right = new ArrayList<>();
+        List<Integer> left = new ArrayList<>(1000000000);
+        List<Integer> pivot= new ArrayList<>(1000000000);
+        List<Integer> right = new ArrayList<>(1000000000);
 
         for (int i = 0; i < array.size(); i++) {
             Integer current = array.get(i);
