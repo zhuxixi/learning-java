@@ -1,18 +1,19 @@
 package org.zhuzhenxi.test.file;
 
-import com.alibaba.fastjson.JSONObject;
-import com.sun.org.apache.xerces.internal.xs.StringList;
 import org.zhuzhenxi.test.random.RandomUtil;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 读文件工具类
+ */
 public class FileUtil {
     public static List<String> readFile(String fileName){
         File file = new File("/Users/zhuzhenxi/Downloads/testfile/"+fileName+".csv");
-        Long filelength = file.length(); // 获取文件长度
-        byte[] filecontent = new byte[filelength.intValue()];
+        Long fileLength = file.length(); // 获取文件长度
+        byte[] filecontent = new byte[fileLength.intValue()];
         try
         {
             FileInputStream in = new FileInputStream(file);

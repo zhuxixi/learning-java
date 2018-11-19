@@ -1,11 +1,18 @@
-package org.zhuzhenxi.test.file;
+package org.zhuzhenxi.test.sort;
+
+import org.zhuzhenxi.test.file.FileUtil;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
-public class TestFile {
+/**
+ * 从十亿个数中找出从小大排序的第100个数
+ * @author zhuzhenxi
+ * @date 2018.11.20
+ */
+public class FindMin100ByLinkedList {
 
 
     public static void main(String[] args) {
