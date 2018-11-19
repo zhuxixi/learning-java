@@ -1,9 +1,6 @@
 package org.zhuzhenxi.test.sort;
 
-import org.zhuzhenxi.test.random.RandomUtil;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.alibaba.fastjson.JSON;
 
 /**
  * @Author:Zhuxixi
@@ -15,12 +12,13 @@ public class InsertSortNumber {
     public static void main(String[] args) {
         Integer[] testArray = {40,23,33,2,21,12,32,34};
 
-        System.out.println("排序前"+testArray);
+        System.out.println("排序前"+ JSON.toJSONString(testArray));
         long start = System.currentTimeMillis();
         insertSort(testArray);
         long end = System.currentTimeMillis();
-        System.out.println("插入排序耗时："+(end-start));//200条3毫秒，2万=50毫秒，20万500毫秒，200万=3秒
-        System.out.println("排序后"+testArray);
+        //200条3毫秒，2万=50毫秒，20万500毫秒，200万=3秒
+        System.out.println("插入排序耗时："+(end-start));
+        System.out.println("排序后"+JSON.toJSONString(testArray));
 
 
 
