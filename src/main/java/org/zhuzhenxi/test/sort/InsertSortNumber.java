@@ -29,9 +29,10 @@ public class InsertSortNumber {
 
     /**
      * 插入排序
-     * 将数组分成 0~1与2~length两部分
+     * 将数组分成 0与1~length两部分
      * 两个循环嵌套
-     * 外层循环遍历 2~length部分 从2开始拿数，然后和0~1的元素比较大小，如果需要插入，将被插入的位置的数放到 位置+1上，因为只要插入了，后面的数都要向后挪一位。
+     * 外层循环遍历 1~length部分 从1开始拿数，然后和0的元素比较大小，如果需要插入，需要挪动内层循环的数。
+     *
      * @param param
      */
     private static void insertSort(Integer[] param){
