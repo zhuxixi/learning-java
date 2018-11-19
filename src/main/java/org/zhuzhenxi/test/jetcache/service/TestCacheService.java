@@ -1,4 +1,4 @@
-package org.zhuzhenxi.test.service;
+package org.zhuzhenxi.test.jetcache.service;
 
 import java.util.List;
 
