@@ -3,7 +3,7 @@ package org.zhuzhenxi.test.random;
 import java.util.Random;
 
 /**
- * 随机数生成类
+ * 随机数生成类,用于各类测试
  */
 public class RandomUtil {
 

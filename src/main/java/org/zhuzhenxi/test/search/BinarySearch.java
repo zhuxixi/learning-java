@@ -1,21 +1,12 @@
 package org.zhuzhenxi.test.search;
 
+/**
+ * 二分查找
+ */
 public class BinarySearch {
 
 
     public static void main(String[] args) {
-//        List<Integer> testArray = new ArrayList<>();
-//
-//        for (int i = 0; i < 2000000; i++) {
-//            testArray.add(RandomUtil.generateRandomNumber());
-//        }
-////        System.out.println("排序前"+testArray);
-//        long start = System.currentTimeMillis();
-//        testArray = quickSort(testArray);
-//        long end = System.currentTimeMillis();
-//        System.out.println("快速排序耗时："+(end-start));//200条3毫秒，2万=50毫秒，20万500毫秒，200万=3秒
-////        System.out.println("排序后"+testArray);
-//
 
     }
     public static int search(int[] arr, int key) {
