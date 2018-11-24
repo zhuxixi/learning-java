@@ -97,6 +97,7 @@ public class MaxSubArray {
             result.setMaxValue(finalSum);
             return result;
         }
+
         System.out.println("maxLeft是初始值,没有进入循环for(middle->start)");
         finalSum = maxRight;
         result.setMaxValue(finalSum);
@@ -104,10 +105,16 @@ public class MaxSubArray {
 
     }
 
-
+    /**
+     * 内部类
+     * 存储最大子数组的属性
+     */
     private static class SubArray{
+        //起始索引
         private int low;
+        //结束索引
         private int high;
+        //起始元素->结束元素的和
         private int maxValue;
 
         private int getLow() {
