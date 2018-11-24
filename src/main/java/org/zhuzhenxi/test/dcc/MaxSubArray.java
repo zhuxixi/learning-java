@@ -11,7 +11,7 @@ import com.alibaba.fastjson.JSON;
 public class MaxSubArray {
     public static void main(String[] args) {
 //        int[] testArray = {13,-3,-25,20,-3,-16,-23,18,20,-7,12,-5,-22,15,-4,7};
-        int[] testArray = {-9,-9,10,11};
+        int[] testArray = {-6,-8,-9,-10,-11};
 
         SubArray result = findMaxSubArray(testArray,0,testArray.length-1);
         System.out.println("最终结果："+ JSON.toJSONString(result));
@@ -78,6 +78,8 @@ public class MaxSubArray {
             //两个元素比较的话，跨过中点的最大子数组就是两个元素的合
             finalSum = arr[start]+arr[end];
             result.setMaxValue(finalSum);
+            result.setLow(start);
+            result.setHigh(end);
             return result;
         }
 
@@ -87,14 +89,15 @@ public class MaxSubArray {
             result.setMaxValue(finalSum);
             return result;
         }
-        //放法走到这里，说明maxLeft 和 maxRight 有一个是初始值
+        //方法走到这里，说明 maxLeft 和 maxRight 有一个是初始值
         if (maxLeft != Integer.MIN_VALUE) {
-            System.out.println("maxRight是初始值");
+            //如果start=0,middle=1,end=2,就会走到这里，此时不会进入右子数组的for循环
+            System.out.println("maxRight是初始值,没有进入循环for(middle->end)");
             finalSum = maxLeft;
             result.setMaxValue(finalSum);
             return result;
         }
-        System.out.println("maxRight是初始值");
+        System.out.println("maxLeft是初始值,没有进入循环for(middle->start)");
         finalSum = maxRight;
         result.setMaxValue(finalSum);
         return result;
@@ -102,40 +105,36 @@ public class MaxSubArray {
     }
 
 
-    public static class SubArray{
+    private static class SubArray{
         private int low;
         private int high;
         private int maxValue;
 
-        public int getLow() {
+        private int getLow() {
             return low;
         }
 
-        public void setLow(int low) {
+        private void setLow(int low) {
             this.low = low;
         }
 
-        public int getHigh() {
+        private int getHigh() {
             return high;
         }
 
-        public void setHigh(int high) {
+        private void setHigh(int high) {
             this.high = high;
         }
 
-        public int getMaxValue() {
+        private int getMaxValue() {
             return maxValue;
         }
 
-        public void setMaxValue(int maxValue) {
+        private void setMaxValue(int maxValue) {
             this.maxValue = maxValue;
         }
 
-        public SubArray(){
-
-        }
-
-        public SubArray(int low1, int high1, int maxValue1){
+        private SubArray(int low1, int high1, int maxValue1){
             low = low1;
             high =high1;
             this.maxValue = maxValue1;
