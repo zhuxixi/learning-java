@@ -18,6 +18,13 @@ public class MaxSubArray {
 
     }
 
+    /**
+     * 寻找最大子数组
+     * @param arr
+     * @param start
+     * @param end
+     * @return
+     */
     private static SubArray findMaxSubArray(int[] arr,int start ,int end){
         if (start==end){
             return new SubArray(start,end,arr[start]);
