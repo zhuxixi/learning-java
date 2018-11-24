@@ -11,7 +11,7 @@ import com.alibaba.fastjson.JSON;
 public class MaxSubArray {
     public static void main(String[] args) {
 //        int[] testArray = {13,-3,-25,20,-3,-16,-23,18,20,-7,12,-5,-22,15,-4,7};
-        int[] testArray = {-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,10,11};
+        int[] testArray = {-9,-9,10,11};
 
         SubArray result = findMaxSubArray(testArray,0,testArray.length-1);
         System.out.println("最终结果："+ JSON.toJSONString(result));
@@ -50,7 +50,7 @@ public class MaxSubArray {
      * @param end
      */
     private static SubArray findMaxCrossingSubArray(int[] arr, int start, int middle, int end) {
-        int maxLeft = -123456789;
+        int maxLeft = Integer.MIN_VALUE;
         int currentLeft = 0;
         int maxLeftIndex = 0;
         for (int i = middle; i > start; i--) {
@@ -60,7 +60,7 @@ public class MaxSubArray {
                 maxLeftIndex = i;
             }
         }
-        int maxRight = -123456789;
+        int maxRight = Integer.MIN_VALUE;
         int currentRight = 0;
         int maxRightIndex = 0;
         for (int i = middle + 1; i < end; i++) {
@@ -70,25 +70,31 @@ public class MaxSubArray {
                 maxRightIndex = i;
             }
         }
-        int finalSum = 0;
+        int finalSum = maxRight+maxLeft;
         SubArray result = new SubArray(maxLeftIndex, maxRightIndex, finalSum);
-        // 如果是两个元素比较，不会有结果
-        if (maxLeft == -123456789 && maxRight == -123456789) {
-            finalSum = -123456789;
+
+        //如果maxLeft 和 maxRight 都是初始值，说明没进for循环,也就是当前start 和 end 是连续的两个值，
+        if (maxLeft == Integer.MIN_VALUE && maxRight == Integer.MIN_VALUE) {
+            //两个元素比较的话，跨过中点的最大子数组就是两个元素的合
+            finalSum = arr[start]+arr[end];
             result.setMaxValue(finalSum);
             return result;
         }
-        //如果左右两个子数组都有最大子数组，直接 求和返回结果
-        if (maxLeft != -123456789 && maxRight != -123456789) {
+
+        //如果maxLeft 和 maxRight 都不是初始值,那么直接将两个值相加即可
+        if (maxLeft != Integer.MIN_VALUE && maxRight != Integer.MIN_VALUE) {
             finalSum = maxLeft + maxRight;
             result.setMaxValue(finalSum);
             return result;
         }
-        if (maxLeft != -12345678) {
+        //放法走到这里，说明maxLeft 和 maxRight 有一个是初始值
+        if (maxLeft != Integer.MIN_VALUE) {
+            System.out.println("maxRight是初始值");
             finalSum = maxLeft;
             result.setMaxValue(finalSum);
             return result;
         }
+        System.out.println("maxRight是初始值");
         finalSum = maxRight;
         result.setMaxValue(finalSum);
         return result;
