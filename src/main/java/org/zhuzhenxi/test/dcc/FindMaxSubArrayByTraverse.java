@@ -2,6 +2,7 @@ package org.zhuzhenxi.test.dcc;
 
 /**
  * 暴力求解最大子数组
+ * 时间复杂度 n^2
  * @Author:Zhuxixi
  * @Description:
  * @Date:Create in  2018/11/26 9:43 PM
@@ -22,7 +23,7 @@ public class FindMaxSubArrayByTraverse {
     }
 
     /**
-     * 寻找最大子数组
+     * 暴力寻找最大子数组
      * @param arr
      * @return
      */
@@ -32,17 +33,17 @@ public class FindMaxSubArrayByTraverse {
         //当前最大值
         int currentMaxValue = Integer.MIN_VALUE;
 
-        //从数组第一个数开始的最大子数组
+        //从数组第一个数开始，判断arr[1]~arr[n]的合
         for (int i = 0; i < arr.length; i++) {
             int a = arr[i];
             int j = i;
-            //先判断一下自己
+            //先判断一下自己是否比当前大
             if (a>currentMaxValue){
                 currentMaxValue=a;
                 start = i;
                 end = j;
             }
-            j = j+1;
+            j++;
             while (j<arr.length){
                 a += arr[j];
                 if (a>currentMaxValue){
