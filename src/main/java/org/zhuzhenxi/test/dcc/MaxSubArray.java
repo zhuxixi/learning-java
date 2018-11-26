@@ -9,9 +9,11 @@ import com.alibaba.fastjson.JSON;
  * @Date:Create in  2018/11/24 2:18 PM
  */
 public class MaxSubArray {
+    //相等元素
     public static void main(String[] args) {
+
 //        int[] testArray = {13,-3,-25,20,-3,-16,-23,18,20,-7,12,-5,-22,15,-4,7};
-        int[] testArray = {-6,-8,-9,-10,-11};
+        int[] testArray = {-2,-8,-9,-10,-11,-2};
 
         SubArray result = findMaxSubArray(testArray,0,testArray.length-1);
         System.out.println("最终结果："+ JSON.toJSONString(result));
@@ -30,8 +32,11 @@ public class MaxSubArray {
             return new SubArray(start,end,arr[start]);
         }
         int middle = (start+end)/2;
+        //最大左
         SubArray maxLeft = findMaxSubArray(arr,start,middle);
+        //最大右
         SubArray maxRight = findMaxSubArray(arr,middle+1,end);
+        //最大左+最大右
         SubArray maxCrossMiddle = findMaxCrossingSubArray(arr,start,middle,end);
 
         SubArray result = new SubArray(maxLeft.getLow(),maxLeft.getHigh(),maxLeft.getMaxValue());
@@ -42,6 +47,7 @@ public class MaxSubArray {
         if (maxCrossMiddle.getMaxValue()>result.getMaxValue()){
             result = maxCrossMiddle;
         }
+        //最大左、最大右、最大左+最大右中，三选一，选最大
         return result;
 
 
