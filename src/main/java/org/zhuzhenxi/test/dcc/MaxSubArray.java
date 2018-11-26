@@ -16,7 +16,10 @@ public class MaxSubArray {
         int[] testArray = {-2,-8,-9,-10,-11,-2};
 
         SubArray result = findMaxSubArray(testArray,0,testArray.length-1);
-        System.out.println("最终结果："+ JSON.toJSONString(result));
+        System.out.println("low:"+result.getLow());
+        System.out.println("high:"+result.getHigh());
+        System.out.println("value:"+result.getMaxValue());
+
 
     }
 
