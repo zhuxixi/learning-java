@@ -1,19 +1,17 @@
 package org.zhuzhenxi.test.dcc;
 
-import com.alibaba.fastjson.JSON;
-
 /**
  * 最大子数组问题
  * @Author:Zhuxixi
  * @Description:
  * @Date:Create in  2018/11/24 2:18 PM
  */
-public class MaxSubArray {
+public class FindMaxSubArrayByDivideConquerCombine {
     //相等元素
     public static void main(String[] args) {
 
 //        int[] testArray = {13,-3,-25,20,-3,-16,-23,18,20,-7,12,-5,-22,15,-4,7};
-        int[] testArray = {-2,-8,-9,-10,-11,-2};
+        int[] testArray = {-2,-8,-9,-10,11,12};
 
         SubArray result = findMaxSubArray(testArray,0,testArray.length-1);
         System.out.println("low:"+result.getLow());
@@ -121,47 +119,5 @@ public class MaxSubArray {
 
     }
 
-    /**
-     * 内部类
-     * 存储最大子数组的属性
-     */
-    private static class SubArray{
-        //起始索引
-        private int low;
-        //结束索引
-        private int high;
-        //起始元素->结束元素的和
-        private int maxValue;
 
-        private int getLow() {
-            return low;
-        }
-
-        private void setLow(int low) {
-            this.low = low;
-        }
-
-        private int getHigh() {
-            return high;
-        }
-
-        private void setHigh(int high) {
-            this.high = high;
-        }
-
-        private int getMaxValue() {
-            return maxValue;
-        }
-
-        private void setMaxValue(int maxValue) {
-            this.maxValue = maxValue;
-        }
-
-        private SubArray(int low1, int high1, int maxValue1){
-            low = low1;
-            high =high1;
-            this.maxValue = maxValue1;
-
-        }
-    }
 }
