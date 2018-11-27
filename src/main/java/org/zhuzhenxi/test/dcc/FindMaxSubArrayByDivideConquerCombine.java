@@ -1,7 +1,7 @@
 package org.zhuzhenxi.test.dcc;
 
 /**
- * 最大子数组问题
+ * 分治法(递归)求解最大子数组问题
  * @Author:Zhuxixi
  * @Description:
  * @Date:Create in  2018/11/24 2:18 PM
