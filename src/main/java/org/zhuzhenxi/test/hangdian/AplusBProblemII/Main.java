@@ -1,8 +1,7 @@
 package org.zhuzhenxi.test.hangdian.AplusBProblemII;
 
 import java.io.BufferedInputStream;
-import java.math.BigInteger;
-import java.util.*;
+import java.util.Scanner;
 
 /**
  * @Author:Zhuxixi
@@ -11,11 +10,15 @@ import java.util.*;
  */
 public class Main {
 
+    /**
+     * 如果输入003
+     * char[0] 是0，所以大数组相加需要数组反向遍历相加
+     * @param args
+     */
     public static void main(String[] args) {
 
         Scanner in = new Scanner(new BufferedInputStream(System.in));
         while (in.hasNextLine()) {
-            Map<Integer, String> result = new LinkedHashMap<>();
             int index = 1;
             int linesNum = Integer.parseInt(in.nextLine());
             if (linesNum>20||linesNum<1){
@@ -27,7 +30,8 @@ public class Main {
                 String[] ab = str.split(" ");
                 char[] a1char = ab[0].toCharArray();
                 char[] b1char = ab[1].toCharArray();
-
+                a1char = filter0(a1char);
+                b1char = filter0(b1char);
                 int a1charLenth = a1char.length;
                 int b1charLenth = b1char.length;
                 if (a1charLenth>1000||b1charLenth>1000){
@@ -44,22 +48,13 @@ public class Main {
 
                 System.out.println("Case " + index + ":");
 
-                System.out.println(ab[0] + " + " + ab[1] + " = " + resultstr);
+                System.out.println(new String(a1char) + " + " + new String(b1char) + " = " + resultstr);
                 if (index!=mirror){
                     System.out.println();
                 }
                 index++;
                 linesNum--;
             }
-
-//            for (Map.Entry<Integer, String> entry : result.entrySet()) {
-//
-//                System.out.println("Case " + entry.getKey() + ":");
-//                System.out.println(entry.getValue());
-//                if (entry.getKey() != mirror) {
-//                    System.out.println();
-//                }
-//            }
         }
 
     }
@@ -98,22 +93,17 @@ public class Main {
         return(char)(input + '0');
     }
 
-//    public static void main(String[] args) {
-//        Scanner scanner = new Scanner(System.in);
-//        int n = scanner.nextInt();
-//        BigInteger a;
-//        BigInteger b;
-//
-//        for (int i=0;i<n;i++) {
-//            a = scanner.nextBigInteger();
-//            b = scanner.nextBigInteger();
-//
-//            System.out.println("Case "+(i+1)+":");
-//            System.out.print(a+" "+"+"+" "+b+" "+"="+" ");;
-//            System.out.println(a.add(b));
-//            if (i!=n-1) {
-//                System.out.println();
-//            }
-//        }
-//    }
+    private static char[] filter0(char[] chars){
+        int num0 = 0;
+        for (int i = 0; i < chars.length; i++) {
+            if(char2int(chars[i])==0){
+                num0++;
+            }
+        }
+        char []result0 = new char[chars.length-num0];
+        for (int i = num0; i < chars.length; i++) {
+            result0[i-num0] = chars[i];
+        }
+        return result0;
+    }
 }
