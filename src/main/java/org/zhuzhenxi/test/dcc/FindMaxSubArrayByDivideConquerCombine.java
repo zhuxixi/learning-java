@@ -10,8 +10,8 @@ public class FindMaxSubArrayByDivideConquerCombine {
     //相等元素
     public static void main(String[] args) {
 
-//        int[] testArray = {13,-3,-25,20,-3,-16,-23,18,20,-7,12,-5,-22,15,-4,7};
-        int[] testArray = {-2,-8,-9,-10,11,12};
+        int[] testArray = {13,-3,-25,20,-3,-16,-23,18,20,-7,12,-5,-22,15,-4,7};
+//        int[] testArray = {-2,-8,-9,-10,11,12};
 
         SubArray result = findMaxSubArray(testArray,0,testArray.length-1);
         System.out.println("low:"+result.getLow());
