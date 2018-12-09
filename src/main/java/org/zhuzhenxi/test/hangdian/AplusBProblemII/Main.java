@@ -3,11 +3,7 @@ package org.zhuzhenxi.test.hangdian.AplusBProblemII;
 import java.io.BufferedInputStream;
 import java.util.Scanner;
 
-/**
- * @Author:Zhuxixi
- * @Description:
- * @Date:Create in  2018/12/9 6:52 PM
- */
+
 public class Main {
 
     /**
@@ -34,6 +30,16 @@ public class Main {
                 b1char = filter0(b1char);
                 int a1charLenth = a1char.length;
                 int b1charLenth = b1char.length;
+                if (a1charLenth==0&&b1charLenth==0){
+                    System.out.println("Case " + index + ":");
+                    System.out.println(ab[0] + " + " + ab[1] + " = " + 0);
+                    if (index!=mirror){
+                        System.out.println();
+                    }
+                    index++;
+                    linesNum--;
+                    continue;
+                }
                 if (a1charLenth>1000||b1charLenth>1000){
                     continue;
                 }
@@ -48,7 +54,7 @@ public class Main {
 
                 System.out.println("Case " + index + ":");
 
-                System.out.println(new String(a1char) + " + " + new String(b1char) + " = " + resultstr);
+                System.out.println(ab[0] + " + " + ab[1] + " = " + resultstr);
                 if (index!=mirror){
                     System.out.println();
                 }
@@ -59,11 +65,11 @@ public class Main {
 
     }
 
-    private static char[] sum(char[] shorter,char[] large,int cut){
+    private static char[] sum(char[] large,char[] shorter,int cut){
         int forward = 0;
         for (int i = large.length-1; i >= 0; i--) {
             int sum = forward;
-            if ((i-cut) > (shorter.length-1)){
+            if ((i-cut)<0){
 
             }else {
                 int b = char2int(shorter[i-cut]);
@@ -98,7 +104,13 @@ public class Main {
         for (int i = 0; i < chars.length; i++) {
             if(char2int(chars[i])==0){
                 num0++;
+            }else {
+                break;
             }
+
+        }
+        if (num0==0){
+            return chars;
         }
         char []result0 = new char[chars.length-num0];
         for (int i = num0; i < chars.length; i++) {
