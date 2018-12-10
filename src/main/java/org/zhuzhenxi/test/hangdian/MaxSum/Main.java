@@ -58,16 +58,20 @@ public class Main {
     }
 
     private static   NewSubArray findMaxSub(int[] input,int start,int end){
-        System.out.println("当前input="+ JSON.toJSONString(input) +"start="+start+"end"+end);
         if (start==end){
             return new NewSubArray(input[start],start,end);
         }
 
-        int middle = (start+end)/2;
+        int middle = ((start+end)/2);
 
         NewSubArray maxLeft = findMaxSub(input,start,middle);
+        System.out.println("left"+JSON.toJSONString(maxLeft));
         NewSubArray maxRight = findMaxSub(input,middle+1,end);
+        System.out.println("right"+JSON.toJSONString(maxRight));
+
         NewSubArray maxCrossMiddle = findMaxCrossMiddle(input,start,middle,end);
+        System.out.println("middle"+JSON.toJSONString(maxCrossMiddle));
+
         //三个比大小
         NewSubArray result = maxLeft.getValue()>maxRight.getValue()?maxLeft:maxRight;
         result = result.getValue()>maxCrossMiddle.getValue()?result:maxCrossMiddle;
@@ -75,6 +79,7 @@ public class Main {
     }
 
     private static NewSubArray findMaxCrossMiddle(int[] input,int start,int middle,int end){
+
         int maxLeft = Integer.MIN_VALUE;
         int leftIndex = Integer.MIN_VALUE;
         for (int i = middle; i >=start ; i--) {
@@ -107,19 +112,33 @@ public class Main {
             }
         }
 
+        NewSubArray result = null;
         //说明start=end
         if (maxLeft==Integer.MIN_VALUE&&maxRight==Integer.MIN_VALUE){
-            return new NewSubArray(input[start]+input[end],start,end);
+            result = new NewSubArray(input[start]+input[end],start,end);
+
+            System.out.println("左右都是初始值"+JSON.toJSONString(result));
+            return result;
         }
 
         if (maxLeft!=Integer.MIN_VALUE&&maxRight==Integer.MIN_VALUE){
-            return new NewSubArray(maxRight,middle,rightIndex);
+            result = new NewSubArray(maxLeft,start,end);
+            System.out.println("右都是初始值"+JSON.toJSONString(result));
+
+            return result;
         }
         if (maxLeft==Integer.MIN_VALUE&&maxRight!=Integer.MIN_VALUE){
-            return new NewSubArray(maxLeft,leftIndex,middle);
+
+            result = new NewSubArray(maxRight,middle,rightIndex);
+            System.out.println("左都是初始值"+JSON.toJSONString(result));
+
+            return result;
         }
 
-        return new NewSubArray(maxLeft+maxRight,leftIndex,rightIndex);
+        result = new NewSubArray(maxLeft+maxRight,leftIndex,rightIndex);
+        System.out.println("左右都不是初始值"+JSON.toJSONString(result));
+
+        return result;
 
 
 
