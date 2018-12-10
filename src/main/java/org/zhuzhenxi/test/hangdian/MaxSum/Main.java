@@ -1,7 +1,5 @@
 package org.zhuzhenxi.test.hangdian.MaxSum;
 
-import com.alibaba.fastjson.JSON;
-
 import java.io.BufferedInputStream;
 import java.util.Scanner;
 
@@ -66,17 +64,17 @@ public class Main {
         int middle = ((start+end)/2);
 
         NewSubArray maxLeft = findMaxSub(input,start,middle);
-        System.out.println("left"+JSON.toJSONString(maxLeft));
+//        System.out.println("left"+JSON.toJSONString(maxLeft));
         NewSubArray maxRight = findMaxSub(input,middle+1,end);
-        System.out.println("right"+JSON.toJSONString(maxRight));
+//        System.out.println("right"+JSON.toJSONString(maxRight));
 
         NewSubArray maxCrossMiddle = findMaxCrossMiddle(input,start,middle,end);
-        System.out.println("middle"+JSON.toJSONString(maxCrossMiddle));
+//        System.out.println("middle"+JSON.toJSONString(maxCrossMiddle));
 
         //三个比大小
         NewSubArray result = maxLeft.getValue()>maxRight.getValue()?maxLeft:maxRight;
         result = result.getValue()>maxCrossMiddle.getValue()?result:maxCrossMiddle;
-        System.out.println("本次最大"+JSON.toJSONString(result));
+//        System.out.println("本次最大"+JSON.toJSONString(result));
 
         return result;
     }
@@ -124,26 +122,26 @@ public class Main {
         if (maxLeft==Integer.MIN_VALUE&&maxRight==Integer.MIN_VALUE){
             result = new NewSubArray(input[start]+input[end],start,end);
 
-            System.out.println("左右都是初始值"+JSON.toJSONString(result));
+//            System.out.println("左右都是初始值"+JSON.toJSONString(result));
             return result;
         }
 
         if (maxLeft!=Integer.MIN_VALUE&&maxRight==Integer.MIN_VALUE){
             result = new NewSubArray(maxLeft,start,end);
-            System.out.println("右都是初始值"+JSON.toJSONString(result));
+//            System.out.println("右都是初始值"+JSON.toJSONString(result));
 
             return result;
         }
         if (maxLeft==Integer.MIN_VALUE&&maxRight!=Integer.MIN_VALUE){
 
             result = new NewSubArray(maxRight,middle,rightIndex);
-            System.out.println("左都是初始值"+JSON.toJSONString(result));
+//            System.out.println("左都是初始值"+JSON.toJSONString(result));
 
             return result;
         }
 
         result = new NewSubArray(maxLeft+maxRight,leftIndex,rightIndex);
-        System.out.println("左右都不是初始值"+JSON.toJSONString(result));
+//        System.out.println("左右都不是初始值"+JSON.toJSONString(result));
 
         return result;
 
