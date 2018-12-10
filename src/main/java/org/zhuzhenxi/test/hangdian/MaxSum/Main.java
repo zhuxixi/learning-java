@@ -12,6 +12,7 @@ import java.util.Scanner;
  * @Date:Create in  2018/12/10 12:40 AM
  */
 public class Main {
+
     //13 -3 -25 20 -3 -16 -23 18 20 -7 12 -5 -22 15 -4 7
     public static void main(String[] args){
         Scanner in = new Scanner(new BufferedInputStream(System.in));
@@ -75,39 +76,45 @@ public class Main {
         //三个比大小
         NewSubArray result = maxLeft.getValue()>maxRight.getValue()?maxLeft:maxRight;
         result = result.getValue()>maxCrossMiddle.getValue()?result:maxCrossMiddle;
+        System.out.println("本次最大"+JSON.toJSONString(result));
+
         return result;
     }
 
     private static NewSubArray findMaxCrossMiddle(int[] input,int start,int middle,int end){
-
         int maxLeft = Integer.MIN_VALUE;
+        int sumLeft = Integer.MIN_VALUE;
         int leftIndex = Integer.MIN_VALUE;
         for (int i = middle; i >=start ; i--) {
             //如果是首次遍历，直接跳出
             if (maxLeft==Integer.MIN_VALUE){
                 maxLeft = input[i];
                 leftIndex = i;
+                sumLeft = input[i];
                 continue;
             }
-            int currentLeft = input[i]+maxLeft;
-            if (currentLeft>maxLeft){
-                maxLeft = currentLeft;
+            sumLeft = input[i]+sumLeft;
+            if (sumLeft>maxLeft){
+                maxLeft = sumLeft;
                 leftIndex = i;
             }
         }
 
         int maxRight = Integer.MIN_VALUE;
+        int sumRight = Integer.MIN_VALUE;
         int rightIndex = Integer.MIN_VALUE;
+
         for (int i = middle+1; i <= end ; i++) {
             //如果是首次遍历，直接跳出
             if (maxRight==Integer.MIN_VALUE){
                 maxRight = input[i];
                 rightIndex = i;
+                sumRight = i;
                 continue;
             }
-            int currentRight = input[i]+maxLeft;
-            if (currentRight>maxLeft){
-                maxRight = currentRight;
+            sumRight = input[i]+sumRight;
+            if (sumRight>maxLeft){
+                maxRight = sumRight;
                 rightIndex = i;
             }
         }
