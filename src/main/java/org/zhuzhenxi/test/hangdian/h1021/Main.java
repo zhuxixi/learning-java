@@ -16,17 +16,27 @@ public class Main {
     public static void main(String[] orgs){
         Scanner in = new Scanner(new BufferedInputStream(System.in));
 
-        while (in.hasNextInt()){
-            int input = in.nextInt();
-            if (input>1000000){
-                continue;
-            }
-            int result = fibonacci(input);
-            if ((result/3)*3==result){
+//        while (in.hasNextInt()){
+//            int input = in.nextInt();
+//            if (input>1000000){
+//                continue;
+//            }
+//            int result = fibonacci(input);
+//            if (result%3==0){
+//                System.out.println(YES);
+//                continue;
+//            }
+//            System.out.println(NO);
+//        }
+
+
+        while (in.hasNext()) {
+            int n = in.nextInt();
+            if (n % 4 == 2) {
                 System.out.println(YES);
-                continue;
+            } else {
+                System.out.println(NO);
             }
-            System.out.println(NO);
         }
     }
 
