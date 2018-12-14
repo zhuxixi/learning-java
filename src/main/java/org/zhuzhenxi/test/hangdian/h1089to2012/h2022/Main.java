@@ -1,4 +1,4 @@
-package org.zhuzhenxi.test.hangdian.h2022;
+package org.zhuzhenxi.test.hangdian.h1089to2012.h2022;
 
 import java.util.Scanner;
 
