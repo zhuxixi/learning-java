@@ -41,7 +41,7 @@ public class TestCacheServiceImpl implements TestCacheService {
      * @param param
      * @return
      */
-    @CacheUpdate(name="testCache", key="#root.targetClass.simpleName + ':' + #param",value = "#result",area = "default")
+//    @CacheUpdate(name="testCache", key="#root.targetClass.simpleName + ':' + #param",value = "#result",area = "default")
     @Override
     public String putValue(String param) {
         System.out.println("进入了putValue方法体");
