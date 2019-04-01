@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.zhuzhenxi.test.jetcache.service.TestCacheService;
+import org.zhuzhenxi.test.spring.SpringUtil;
 
 import java.util.List;
 
@@ -15,11 +16,18 @@ import java.util.List;
 @RestController
 public class TestController {
 
-    @Autowired
     private TestCacheService testCacheService;
+    private SpringUtil util;
+
+    @Autowired
+    public TestController(TestCacheService testCacheService1,SpringUtil util1){
+        this.testCacheService = testCacheService1;
+        this.util = util1;
+    }
 
     @RequestMapping(value = "/put",method = RequestMethod.GET)
     public String putValue(String param){
+
         return testCacheService.putValue(param);
     }
 
@@ -38,4 +46,6 @@ public class TestController {
     public List<String> queryValue(String param1,String param2){
         return testCacheService.queryMultipleValue(param1,param2);
     }
+
+
 }
