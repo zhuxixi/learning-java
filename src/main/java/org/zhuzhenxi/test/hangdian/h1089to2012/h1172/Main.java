@@ -1,9 +1,6 @@
 package org.zhuzhenxi.test.hangdian.h1089to2012.h1172;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args){
@@ -18,6 +15,7 @@ public class Main {
                 guessResults.add(new GuessResult(a,b,c));
                 lines--;
             }
+            guessResults.sort(Comparator.comparing(GuessResult::getRightLocation).reversed());
             Calculator cl = new Calculator(guessResults);
             cl.clearNoNeed();
             cl.tryToMakeSure();
@@ -26,29 +24,61 @@ public class Main {
         }
     }
 
+    /**
+     * 计算类
+     * 6
+     * 4815 2 1
+     * 5716 1 0
+     * 7842 1 0
+     * 4901 0 0
+     * 8585 3 3
+     * 8555 3 2
+     */
     private static class Calculator{
-        private List<Integer> pool = new ArrayList<>();
 
+        /**
+         * 原始池
+         * 所有的四位数的每一位都是由0~9组成的
+         */
+        private List<Integer> originPool = new ArrayList<>();
+        /**
+         * 排除池
+         * 如果正确数字数与正确数字位数都是0，说明这个四位数完全不吻合，丢到排除池中
+         * 已经排除了 例子中 已经排除了 4901这四个数字
+         */
+        private List<Integer> noNeedPool = new ArrayList<>();
+        /**
+         * 可能池
+         * 如果正确数字数>正确数字位数，那这几个数字就进入可能池
+         * 当已经排除了 4901这四个数字后
+         * 4815 2 1 经过排除池过滤，变为8 5 2 1，也就是说，8 5 这两个数字是最终结果中包含的数字，但是正确数字位数只有1，也就说现在
+         * 还不太确定数字的位置，只能先把这两个数字放进可能池
+         */
+        private List<Integer> mayBePool = new ArrayList<>();
         private List<GuessResult> results = new ArrayList<>();
 
-        private String result = "Not sure";
-        private int[] resultPool = new int[4];
+        private String resultStr = "Not sure";
+        private int[] finalResult =new int[4];
+        private boolean find = false;
 
         public Calculator(List<GuessResult> results1){
-            pool.add(0);
-            pool.add(1);
-            pool.add(2);
-            pool.add(3);
-            pool.add(4);
-            pool.add(5);
-            pool.add(6);
-            pool.add(7);
-            pool.add(8);
-            pool.add(9);
+            originPool.add(0);
+            originPool.add(1);
+            originPool.add(2);
+            originPool.add(3);
+            originPool.add(4);
+            originPool.add(5);
+            originPool.add(6);
+            originPool.add(7);
+            originPool.add(8);
+            originPool.add(9);
             results.addAll(results1);
         }
 
 
+        /**
+         * 如果正确数字数与正确数字位数都是0，说明这个四位数完全不吻合，丢到排除池中
+         */
         public void clearNoNeed(){
             Iterator<GuessResult> it = results.iterator();
             while (it.hasNext()){
@@ -56,7 +86,8 @@ public class Main {
                 if (c.getRightBit() == 0&&c.getRightLocation()==0){
                     int[] canClear = spilt(c.getGuess());
                     for (int i = 0; i < canClear.length; i++) {
-                        pool.remove(canClear[i]);
+                        noNeedPool.add(canClear[i]);
+                        originPool.remove(canClear[i]);
                     }
                     it.remove();
                 }
@@ -65,10 +96,36 @@ public class Main {
 
         public void tryToMakeSure(){
             for (int i = 0; i < results.size(); i++) {
-                
+                GuessResult guessResult = results.get(i);
+                int[] nums = spilt(guessResult.getGuess());
+                int filterNum = 0;
+                for (int j = 0; j < nums.length; j++) {
+                    if (!noNeedPool.contains(nums[j])){
+                        filterNum+=1;
+                        mayBePool.add(nums[j]);
+                        //如果上一轮已经有搞定的数字
+                        if (finalResult[j]!=0){
+                            finalResult[j] = nums[j];
+
+                        }
+                    }
+                }
+                //如果去掉一些不要的数字，剩下的数字数与数字正确位数都一样，那就说明这几个位置的数字已经确定了
+                boolean find = filterNum==guessResult.getRightBit()&&filterNum==guessResult.getRightLocation();
+                if (!find){
+                    for (int j = 0; j < finalResult.length; j++) {
+                        finalResult[j] = 0;
+                    }
+                }
+
             }
         }
 
+        /**
+         * 把四位数字分割成四个字符串
+         * @param num
+         * @return
+         */
         private int[] spilt(int num){
             int[] result = new int[4];
             result[0] = num/1000;
