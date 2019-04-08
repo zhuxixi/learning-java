@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class l1 {
+public class L1 {
 
     public static void main(String[] args){
         int[] aaaa = {1,2,3333,1111,2222};
