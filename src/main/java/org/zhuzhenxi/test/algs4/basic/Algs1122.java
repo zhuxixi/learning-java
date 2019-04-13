@@ -4,7 +4,7 @@ public class Algs1122 {
     public static void main(String[] args) {
         int[] a = {1,2,3,4,5,6,7,8,9,10,11,12};
         int key = 3;
-        System.out.println(rankRecursion(key,a,0,a.length,0));
+        System.out.println(rankRecursion(key,a,0,a.length,1));
     }
 
     public static int rank(int key, int[] a)
@@ -41,7 +41,7 @@ public class Algs1122 {
     public static int rankRecursion(int key, int[] a,int low,int high,int depth) {
         System.out.println("当前 low=" + low);
         System.out.println("当前 high=" + high);
-        System.out.println("当前 depth=" + depth);
+        System.out.println("当前 递归深度=" + depth);
         if (low >= high) {
             return -1;
         }
