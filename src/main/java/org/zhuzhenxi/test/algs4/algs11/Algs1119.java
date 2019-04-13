@@ -1,7 +1,6 @@
-package org.zhuzhenxi.test.algs4.basic;
+package org.zhuzhenxi.test.algs4.algs11;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**

@@ -1,4 +1,4 @@
-package org.zhuzhenxi.test.algs4.basic;
+package org.zhuzhenxi.test.algs4.algs11;
 
 public class Algs1118 {
     public static void main(String[] args){
