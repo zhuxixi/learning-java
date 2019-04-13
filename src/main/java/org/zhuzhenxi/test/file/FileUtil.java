@@ -6,6 +6,7 @@ import org.zhuzhenxi.test.random.RandomUtil;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -61,12 +62,34 @@ public class FileUtil {
     }
 
     public static void writeFile(String fileName){
-        File file2 = new File("/Users/zhuzhenxi/Downloads/testfile/"+fileName+".csv");
+        File file2 = new File("E:\\alala"+fileName+".csv");
         Writer write = null;
         try {
             write = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file2), "UTF-8"));
             for (int i = 0; i < 100000; i++) {
                 write.write(RandomUtil.generateRandomNumber() +"\n");
+            }
+
+            write.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally{
+            if(write != null){
+                try {
+                    write.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    public static void writeFile2(String fileName,List<Integer> content){
+        File file2 = new File("E:\\alala\\"+fileName+".csv");
+        Writer write = null;
+        try {
+            write = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file2), "UTF-8"));
+            for (Iterator<Integer> it = content.iterator();it.hasNext();){
+                write.write(it.next() +"\n");
             }
 
             write.flush();

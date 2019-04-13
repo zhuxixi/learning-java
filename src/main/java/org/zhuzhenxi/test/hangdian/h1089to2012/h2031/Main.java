@@ -29,7 +29,7 @@ public class Main {
         KVA2Z.put(12, "C");
         KVA2Z.put(13, "D");
         KVA2Z.put(14, "E");
-        KVA2Z.put(15, "F");
+        KVA2Z.put(15, "f");
     }
 
 
