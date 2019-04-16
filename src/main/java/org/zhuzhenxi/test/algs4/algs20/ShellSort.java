@@ -1,5 +1,11 @@
 package org.zhuzhenxi.test.algs4.algs20;
 
+/**
+ * 100万个6位整数
+ * 两个数组是否相等!true
+ * 插入排序耗时:67304
+ * 希尔排序耗时:131
+ */
 public class ShellSort {
     public static void main(String[] args) {
         int[] a = {0,7,9,8,3,6,5,4,2,1};
