@@ -6,7 +6,7 @@ public class SelectionSort {
         sort(a);
     }
 
-    private static void sort(int[] a){
+    public static void sort(int[] a){
         //0
         //1
         int count = 0;
