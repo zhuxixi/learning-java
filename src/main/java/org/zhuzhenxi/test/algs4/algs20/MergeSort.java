@@ -45,7 +45,7 @@ public class MergeSort {
                 a[k] = COPY[j++];
             }else if (j>high){
                 a[k] = COPY[i++];
-            }else if (a[i]<a[j]){
+            }else if (COPY[j]>COPY[i]){
                 a[k] = COPY[i++];
             }else {
                 a[k] = COPY[j++];
