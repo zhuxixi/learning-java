@@ -133,7 +133,6 @@ public class AliHeap {
         System.out.println("总节点数:"+allNodes);
 
         int i = 1;
-        boolean needLines = false;
         while (i<=high){
             //当前行的节点数
             int[] locations = new int[1];
@@ -141,14 +140,12 @@ public class AliHeap {
             //拿到需要输出数字的位置
             int[] locations2 =  getFillLine(i,1,locations);
             String[] blankLine = getBlankLine(allNodes);
-
-
             int m=0;
             for (int j = power2Value(i-1); j < power2Value(i); j++) {
                 int currentNodeValue = a[j];
                 blankLine[locations2[m++]] = String.valueOf(currentNodeValue);
             }
-            if (needLines){
+            if (i!=1){
                 String[] lines = Arrays.copyOf(blankLine,blankLine.length);
                 boolean leftOrRight = false;
                 for (int j = 0; j < lines.length; j++) {
@@ -165,9 +162,7 @@ public class AliHeap {
                     lines[j] = "\\";
                 }
                 printLine(lines);
-
             }
-            needLines = !needLines;
             printLine(blankLine);
             i++;
         }
@@ -186,13 +181,13 @@ public class AliHeap {
             return locations;
         }
         int[] news = new int[locations.length*2];
+        int k = 0;
         for (int j = 0; j < locations.length; j++) {
-            int left = locations[j]-1;
-            int right = locations[j]+1;
-            for (int k = 0; k < news.length; k+=2) {
-                news[k] = left;
-                news[k+1] = right;
-            }
+            int left = locations[j] - 1;
+            int right = locations[j] + 1;
+            news[k] = left;
+            news[k + 1] = right;
+            k += 2;
         }
 
         return getFillLine(height, i+1, news);
