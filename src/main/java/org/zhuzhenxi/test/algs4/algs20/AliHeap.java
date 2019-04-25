@@ -184,7 +184,7 @@ public class AliHeap {
         int k = 0;
         for (int j = 0; j < locations.length; j++) {
             int left = locations[j] - 1;
-            int right = locations[j] + 1;
+            int right = locations[j] + 1 ;
             news[k] = left;
             news[k + 1] = right;
             k += 2;
