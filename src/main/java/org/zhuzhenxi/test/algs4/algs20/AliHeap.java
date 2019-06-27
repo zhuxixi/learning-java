@@ -116,7 +116,6 @@ public class AliHeap {
             k = k/2;
         }
     }
-
     private void printHeap(){
         if (isEmpty()){
             System.out.println("空堆");
