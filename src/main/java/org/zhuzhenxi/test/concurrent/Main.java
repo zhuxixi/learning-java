@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Main {
 
-    private static List<Integer> EXAMPLE = new ArrayList<>();
+    public static List<Integer> EXAMPLE = new ArrayList<>();
     static {
         for (int i = 0; i < 10; i++) {
             EXAMPLE.add(i);

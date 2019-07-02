@@ -14,5 +14,8 @@ public class ImThread implements Runnable {
     public void run() {
         System.out.println("I am the one that implements Runnable");
 
+        for (int i = 0; i < mine.size(); i++) {
+            System.out.println("嘟嘟嘟:"+mine.get(i));
+        }
     }
 }
