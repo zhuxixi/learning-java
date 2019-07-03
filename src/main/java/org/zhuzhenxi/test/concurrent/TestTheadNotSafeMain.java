@@ -6,7 +6,7 @@ import org.zhuzhenxi.test.concurrent.thread.MyThread;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
+public class TestTheadNotSafeMain {
 
     public static List<Integer> EXAMPLE = new ArrayList<>();
     static {
