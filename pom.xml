@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.zhuzhenxi</groupId>
-	<artifactId>test</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>learning-java</artifactId>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
-	<name>test</name>
+	<name>learning-java</name>
 	<description>demo for practice</description>
 
 	<parent>
